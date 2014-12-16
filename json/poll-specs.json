@@ -1,0 +1,17 @@
+{
+  "title": "Project X design poll",
+  "text": "Choose the design(s) you prefer.",
+  "endText": "Thank you for your participation!",
+  "maxPicks": 3,
+  "images": [
+    "graphics/image1.jpg",
+    "graphics/image2.jpg",
+    "graphics/image3.jpg",
+    "graphics/image4.jpg",
+    "graphics/image5.jpg",
+    "graphics/image6.jpg",
+    "graphics/image4.jpg",
+    "graphics/image5.jpg",
+    "graphics/image6.jpg"
+  ]
+}
