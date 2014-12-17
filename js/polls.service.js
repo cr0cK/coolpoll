@@ -11,14 +11,15 @@
   .service('Polls', [
     '$q', 'User', '$firebase',
     function ($q, User, $firebase) {
-      var sync, polls;
-      var user = User.get();
+      var user, ref, sync, polls;
+
 
       /**
        * Return a promise resolved when initialized.
        */
       this.isReady = function (specs) {
-        var ref = new Firebase(specs.db);
+        user = User.get();
+        ref = new Firebase(specs.db);
         sync = $firebase(ref);
         polls = sync.$asObject();
         return polls.$loaded();
@@ -46,7 +47,7 @@
         var setValue = {};
         setValue[user] = JSON.stringify(value);
 
-        sync.$set(setValue);
+        sync.$update(setValue);
       };
     }
   ]);

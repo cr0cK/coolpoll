@@ -3,32 +3,40 @@
 
   angular.module('coolpoll', [
     'specs',
-    'polls'
+    'polls',
+
+    'LocalStorageModule'
   ])
+
+  .config(['localStorageServiceProvider', function (lsProvider) {
+    lsProvider.setPrefix('[coolpoll]');
+  }])
 
   .run([
     '$rootScope', '$q', 'Specs', 'Polls',
     function ($rootScope, $q, Specs, Polls) {
-      $rootScope.loading = true;
+      $rootScope.ready = false;
 
-      Specs.isReady()
-        .then(function () {
-          return Specs.get();
-        })
-        .then(function (specs) {
-          return Polls.isReady(specs);
-        })
-        .then(function () {
-          $rootScope.$broadcast('ready', true);
-        });
+      $rootScope.loadApp = function () {
+        Specs.isReady()
+          .then(function () {
+            return Specs.get();
+          })
+          .then(function (specs) {
+            return Polls.isReady(specs);
+          })
+          .then(function () {
+            $rootScope.$broadcast('ready', true);
+          });
+      };
     }
   ])
 
   .controller('MainCtrl', [
-    '$scope', '$q', 'Specs', 'Polls',
-    function ($scope, $q, Specs, Polls) {
+    '$scope', '$q', 'Specs', 'Polls', 'User',
+    function ($scope, $q, Specs, Polls, User) {
       $scope.$on('ready', function () {
-        $scope.loading = false;
+        $scope.ready = true;
 
         $scope.specs = Specs.get();
         if (!$scope.specs) {
@@ -38,11 +46,34 @@
         }
       });
 
+      $scope.username = User.get();
+
+      if ($scope.username) {
+        $scope.loadApp();
+      }
+
+      /**
+       * Save the username.
+       */
+      $scope.login = function (username) {
+        $scope.username = username;
+        User.set(username);
+        $scope.loadApp();
+      };
+
+      /**
+       * Remove username.
+       */
+      $scope.logout = function () {
+        User.remove();
+        $scope.username = undefined;
+      };
+
       /**
        * Return true when all picks are done.
        */
       $scope.isDone = function () {
-        if ($scope.loading) {
+        if (!$scope.ready) {
           return;
         }
 

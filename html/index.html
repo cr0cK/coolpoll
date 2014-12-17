@@ -11,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/main.css">
-    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
     <script src='js/vendors.js'></script>
   </head>
@@ -21,17 +20,29 @@
     <![endif]-->
 
     <main ng-controller="MainCtrl" class="main">
-      <p ng-if="loading">Loading...</p>
+      <p ng-if="error">{{error}}</p>
 
-      <div ng-show="!loading">
-        <p ng-if="error">{{error}}</p>
+      <div ng-if="!username">
+        <form>
+          <label>Please, fill your name:</label>
+          <input type="text" ng-model="username" />
+          <input type="submit" ng-click="login(username)" value="Login" />
+        </form>
+      </div>
+
+      <p ng-if="username && !ready">Loading...</p>
+
+      <div ng-if="username && ready">
+        <div class="username">
+          If your are not <strong>{{username}}</strong>,
+          <a href="#" ng-click="logout()">click here</a>.
+        </div>
 
         <h1>{{specs.title}}</h1>
-
         <p>{{specs.text}}</p>
 
-        <pre>{{specs}}</pre>
-        <pre>{{graphicsPicked}}</pre>
+        <!-- <pre>{{specs}}</pre>
+        <pre>{{graphicsPicked}}</pre> -->
 
         <p>Picks remaining: {{specs.maxPicks - graphicsPicked.length}} / {{specs.maxPicks}}</p>
 

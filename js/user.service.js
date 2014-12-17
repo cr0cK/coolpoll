@@ -2,16 +2,19 @@
   'use strict';
 
   angular.module('user', [
-    'firebase'
   ])
 
-  .service('User', [function () {
-
-    /**
-     * Get specs from a JSON file.
-     */
+  .service('User', ['localStorageService', function (localStorage) {
     this.get = function () {
-      return 'cr0cK';
+      return localStorage.get('username');
+    };
+
+    this.set = function (username) {
+      localStorage.set('username', username);
+    };
+
+    this.remove = function () {
+      localStorage.remove('username');
     };
   }]);
 })();
