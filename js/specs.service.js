@@ -1,25 +1,29 @@
 (function () {
   'use strict';
 
-  angular.module('specs', [])
+  angular.module('specs', [
+  ])
 
   .service('Specs', ['$http', '$q', function ($http, $q) {
-    /**
-     * ...
-     */
-    this.get = function () {
-      var defer = $q.defer();
-      var specsFileUrl = 'json/poll-specs.json';
+    var specsFileUrl = 'json/poll-specs.json';
+    var specs;
 
-      $http.get(specsFileUrl).
-        success(function(data, status, headers, config) {
+    /**
+     * Return a promise resolved when initialized.
+     */
+    this.isReady = function () {
+      var defer = $q.defer();
+
+      $http.get(specsFileUrl)
+        .success(function (data) {
+          specs = data;
           defer.resolve(data);
 
           // console.log(data, status, headers, config);
           // this callback will be called asynchronously
           // when the response is available
-        }).
-        error(function(data, status, headers, config) {
+        })
+        .error(function (data) {
           defer.reject(data);
 
           // called asynchronously if an error occurs
@@ -27,6 +31,13 @@
         });
 
       return defer.promise;
+    };
+
+    /**
+     * Return specs.
+     */
+    this.get = function () {
+      return specs;
     };
   }]);
 })();

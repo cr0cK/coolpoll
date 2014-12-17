@@ -21,27 +21,38 @@
     <![endif]-->
 
     <main ng-controller="MainCtrl" class="main">
-      <h1>{{specs.title}}</h1>
+      <p ng-if="loading">Loading...</p>
 
-      <p>{{specs.text}}</p>
+      <div ng-show="!loading">
+        <p ng-if="error">{{error}}</p>
 
-      <p>Picks remaining: {{remainingPicks}} / {{specs.maxPicks}}</p>
+        <h1>{{specs.title}}</h1>
 
-      <p class="end-text" ng-show="isDone()">
-        {{specs.endText}}
-      </p>
+        <p>{{specs.text}}</p>
 
-      <div class="graphics">
-        <div class="graphic" ng-repeat="image in specs.images track by $index">
-          <a target="_blank" href="{{image}}">
-            <img ng-src="{{image}}">
-          </a>
+        <pre>{{specs}}</pre>
+        <pre>{{graphicsPicked}}</pre>
 
-          <button
-            ng-disabled="isDone()"
-            ng-click="pick($index)">
-            Pick!
-          </button>
+        <p>Picks remaining: {{specs.maxPicks - graphicsPicked.length}} / {{specs.maxPicks}}</p>
+
+        <p class="end-text" ng-show="isDone()">
+          {{specs.endText}}
+        </p>
+
+        <div class="graphics">
+          <div class="graphic" ng-repeat="graphic in specs.graphics track by $index">
+            <a target="_blank" href="{{graphic}}">
+              <img
+                ng-class="{'selected': isGraphicSelected($index)}"
+                ng-src="{{graphic}}">
+            </a>
+
+            <button
+              ng-disabled="isDone()"
+              ng-click="pick($index)">
+              Pick!
+            </button>
+          </div>
         </div>
       </div>
     </main>

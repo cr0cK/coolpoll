@@ -3,7 +3,8 @@
   "text": "Choose the design(s) you prefer.",
   "endText": "Thank you for your participation!",
   "maxPicks": 3,
-  "images": [
+  "db": "https://coolpoll.firebaseio.com/polls",
+  "graphics": [
     "graphics/image1.jpg",
     "graphics/image2.jpg",
     "graphics/image3.jpg",
