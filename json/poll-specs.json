@@ -3,13 +3,25 @@
   "text": "Choose the design(s) you prefer.",
   "endText": "Thank you for your participation!",
   "maxPicks": 3,
-  "db": "https://coolpoll.firebaseio.com/polls",
+  "db": "https://coolpoll.firebaseio.com/home-gandiv5-1",
   "graphics": [
-    "graphics/image1.jpg",
-    "graphics/image2.jpg",
-    "graphics/image3.jpg",
-    "graphics/image4.jpg",
-    "graphics/image5.jpg",
-    "graphics/image6.jpg"
+    {
+      "url": "graphics/image1.jpg"
+    },
+    {
+      "url": "graphics/image2.jpg"
+    },
+    {
+      "url": "graphics/image3.jpg"
+    },
+    {
+      "url": "graphics/image4.jpg"
+    },
+    {
+      "url": "graphics/image5.jpg"
+    },
+    {
+      "url": "graphics/image6.jpg"
+    }
   ]
 }

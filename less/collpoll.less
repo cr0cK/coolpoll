@@ -27,15 +27,18 @@ div.graphics {
     img {
       max-width: 250px;
       max-height: 250px;
+      cursor: pointer;
+      border: 1px solid black;
 
       &.selected {
+        border: none;
         outline: 3px solid red;
       }
     }
 
     button {
       display: block;
-      margin: 0 auto;
+      margin: 8px auto 0 auto;
     }
   }
 }

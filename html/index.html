@@ -48,10 +48,10 @@
 
         <div class="graphics">
           <div class="graphic" ng-repeat="graphic in specs.graphics track by $index">
-            <a target="_blank" href="{{graphic}}">
+            <a ng-click="openLightboxModal($index)">
               <img
                 ng-class="{'selected': isGraphicSelected($index)}"
-                ng-src="{{graphic}}">
+                ng-src="{{graphic.url}}">
             </a>
 
             <button

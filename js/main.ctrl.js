@@ -5,7 +5,8 @@
     'specs',
     'polls',
 
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'bootstrapLightbox'
   ])
 
   .config(['localStorageServiceProvider', function (lsProvider) {
@@ -33,8 +34,8 @@
   ])
 
   .controller('MainCtrl', [
-    '$scope', '$q', 'Specs', 'Polls', 'User',
-    function ($scope, $q, Specs, Polls, User) {
+    '$scope', '$q', 'Specs', 'Polls', 'User', 'Lightbox',
+    function ($scope, $q, Specs, Polls, User, Lightbox) {
       $scope.$on('ready', function () {
         $scope.ready = true;
 
@@ -95,10 +96,10 @@
         var pickedGraphic = $scope.specs.graphics[index];
 
         // already picked
-        if (_.contains($scope.graphicsPicked, pickedGraphic)) {
+        if ($scope.isGraphicSelected(index)) {
           $scope.graphicsPicked.splice(index - 1, 1);
         } else {
-          $scope.graphicsPicked.push(pickedGraphic);
+          $scope.graphicsPicked.push(pickedGraphic.url);
         }
 
         Polls.save($scope.graphicsPicked);
@@ -108,7 +109,17 @@
        * Return true if the graphic $index has been selected.
        */
       $scope.isGraphicSelected = function (index) {
-        return _.contains($scope.graphicsPicked, $scope.specs.graphics[index]);
+        var urls = _.map($scope.specs.graphics, function (graphic) {
+          return graphic.url;
+        });
+        return _.contains($scope.graphicsPicked, urls[index]);
+      };
+
+      /**
+       * Open graphic in a modal box.
+       */
+      $scope.openLightboxModal = function (index) {
+        Lightbox.openModal($scope.specs.graphics, index);
       };
     }
   ]);
