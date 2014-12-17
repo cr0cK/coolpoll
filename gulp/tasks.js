@@ -7,6 +7,8 @@ var settings    = require('./settings'),
     less        = require('gulp-less'),
     minifyCss   = require('gulp-minify-css'),
     minifyHtml  = require('gulp-minify-html'),
+    annotate    = require('gulp-ng-annotate'),
+    uglify      = require('gulp-uglify'),
     jshint      = require('gulp-jshint'),
     iconfont    = require('gulp-iconfont'),
     consolidate = require('gulp-consolidate'),
@@ -62,6 +64,15 @@ tasks.buildJS = function () {
     .pipe(gulp.dest('./www/js'));
 };
 
+tasks.compileJS = function () {
+  return gulp
+    .src('js/**/*')
+    .pipe(concat('source.js'))
+    .pipe(annotate())
+    .pipe(uglify())
+    .pipe(gulp.dest('./www/js'));
+};
+
 tasks.lintJS = function () {
   return gulp
     .src(['js/**/*', '!js/bower_components'])
@@ -84,7 +95,13 @@ tasks.copyGraphics = function () {
 tasks.buildHtml = function () {
   return gulp
     .src('./html/*.html')
-    // .pipe(minifyHtml())
+    .pipe(gulp.dest('./www'));
+};
+
+tasks.compileHtml = function () {
+  return gulp
+    .src('./html/*.html')
+    .pipe(minifyHtml())
     .pipe(gulp.dest('./www'));
 };
 
