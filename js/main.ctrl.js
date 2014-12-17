@@ -83,7 +83,7 @@
       /**
        * Save the picked graphics.
        */
-      $scope.pick = function (index) {
+      $scope.togglePick = function (index) {
         if (index === undefined) {
           return;
         }
@@ -96,10 +96,10 @@
 
         // already picked
         if (_.contains($scope.graphicsPicked, pickedGraphic)) {
-          return;
+          $scope.graphicsPicked.splice(index - 1, 1);
+        } else {
+          $scope.graphicsPicked.push(pickedGraphic);
         }
-
-        $scope.graphicsPicked.push(pickedGraphic);
 
         Polls.save($scope.graphicsPicked);
       };

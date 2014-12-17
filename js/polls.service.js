@@ -44,10 +44,7 @@
           value = [];
         }
 
-        var setValue = {};
-        setValue[user] = JSON.stringify(value);
-
-        sync.$update(setValue);
+        sync.$set(user, JSON.stringify(value));
       };
     }
   ]);
