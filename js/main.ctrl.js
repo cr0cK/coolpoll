@@ -97,7 +97,11 @@
 
         // already picked
         if ($scope.isGraphicSelected(index)) {
-          $scope.graphicsPicked.splice(index - 1, 1);
+          _.remove($scope.graphicsPicked,
+            function (graphicUrl) {
+              return graphicUrl === pickedGraphic.url;
+            }
+          );
         } else {
           $scope.graphicsPicked.push(pickedGraphic.url);
         }
