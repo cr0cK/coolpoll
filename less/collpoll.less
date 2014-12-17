@@ -15,6 +15,17 @@ div.username {
   right: 20px;
 }
 
+p.picks-remaining {
+  font-size: 1.4em;
+  text-align: center;
+}
+
+p.end-text {
+  font-size: 1.4em;
+  text-align: center;
+  color: red;
+}
+
 div.graphics {
   div.graphic {
     display: inline-block;
@@ -34,6 +45,10 @@ div.graphics {
         border: none;
         outline: 3px solid red;
       }
+
+      &.disabled {
+        opacity: 0.2;
+      }
     }
 
     button {
@@ -43,7 +58,4 @@ div.graphics {
   }
 }
 
-p.end-text {
-  color: red;
-  font-size: 1.2em;
-}
+

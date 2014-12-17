@@ -40,8 +40,7 @@
 
         <h1>{{specs.title}}</h1>
         <p>{{specs.text}}</p>
-        <p>Picks remaining: {{specs.maxPicks - graphicsPicked.length}} / {{specs.maxPicks}}</p>
-
+        <p class="picks-remaining">Picks remaining: {{specs.maxPicks - graphicsPicked.length}} / {{specs.maxPicks}}</p>
         <p class="end-text" ng-show="isDone()">
           {{specs.endText}}
         </p>
@@ -50,12 +49,12 @@
           <div class="graphic" ng-repeat="graphic in specs.graphics track by $index">
             <a ng-click="openLightboxModal($index)">
               <img
-                ng-class="{'selected': isGraphicSelected($index)}"
+                ng-class="{'selected': isGraphicSelected($index), 'disabled': isDone() && !isGraphicSelected($index)}"
                 ng-src="{{graphic.url}}">
             </a>
 
             <button
-              ng-disabled="isDone()"
+              ng-show="!isDone()"
               ng-click="togglePick($index)">
               Pick!
             </button>
