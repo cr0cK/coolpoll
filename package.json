@@ -1,10 +1,9 @@
 {
-  "name": "cv",
+  "name": "Coolpoll",
   "version": "1.0.0",
-  "description": "My CV.",
+  "description": "A little tool to make a poll of some images.",
   "main": "gulpfile.js",
   "scripts": {
-    "publish": "git subtree push --prefix www origin gh-pages",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "./node_modules/.bin/gulp watch",
     "build": "./node_modules/.bin/gulp build:all",
@@ -13,14 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cr0cK/cv.git"
+    "url": "https://github.com/cr0cK/coolpoll.git"
   },
   "author": "Alexis Mineaud",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cr0cK/cv/issues"
+    "url": "https://github.com/cr0cK/coolpoll/issues"
   },
-  "homepage": "https://github.com/cr0cK/cv",
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-clean": "^0.3.1",
