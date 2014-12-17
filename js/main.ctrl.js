@@ -57,9 +57,14 @@
        * Save the username.
        */
       $scope.login = function (username) {
-        $scope.username = username;
-        User.set(username);
-        $scope.loadApp();
+        if (/\.|#|\[|\]/.test(username)) {
+          $scope.error = 'Your name can\'t contain ".", "#", "$", "[", or "]"';
+        } else {
+          $scope.username = username;
+          User.set(username);
+          $scope.loadApp();
+          $scope.error = null;
+        }
       };
 
       /**

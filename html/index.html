@@ -20,7 +20,9 @@
     <![endif]-->
 
     <main ng-controller="MainCtrl" class="main">
-      <p ng-if="error">{{error}}</p>
+      <div class="alert alert-danger" role="alert" ng-if="error">
+        {{error}}
+      </div>
 
       <div ng-if="!username">
         <form>
