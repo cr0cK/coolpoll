@@ -13,6 +13,7 @@ var settings    = require('./settings'),
     iconfont    = require('gulp-iconfont'),
     consolidate = require('gulp-consolidate'),
     expect      = require('gulp-expect-file'),
+    serve       = require('gulp-serve'),
     rename      = require('gulp-rename'),
     onFileExceptFailure = function () {
       console.log('\nSome vendor files are missing... Process stopped.');
@@ -111,5 +112,7 @@ tasks.compileHtml = function () {
     .pipe(minifyHtml())
     .pipe(gulp.dest('./www'));
 };
+
+tasks.serveDev = serve('www');
 
 module.exports = tasks;

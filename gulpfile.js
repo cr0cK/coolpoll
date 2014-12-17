@@ -49,3 +49,5 @@ gulp.task('compile:all', [
   '_copy:all',
   '_compile:html'
 ]);
+
+gulp.task('serve:dev', tasks.serveDev);
