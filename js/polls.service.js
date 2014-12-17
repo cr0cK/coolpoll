@@ -26,14 +26,29 @@
       };
 
       /**
-       * Return the polls for the current user.
+       * Return the graphics urls.
        */
-      this.get = function () {
+      this.getUrls = function () {
         if (!_.has(polls, user)) {
           return [];
         }
 
-        return JSON.parse(polls[user]);
+        if (!_.has(polls[user], 'urls')) {
+          return [];
+        }
+
+        return JSON.parse(polls[user].urls);
+      };
+
+      /**
+       * Return the feedback.
+       */
+      this.getFeedback = function () {
+        if (!_.has(polls, user)) {
+          return '';
+        }
+
+        return polls[user].feedback;
       };
 
       /**
@@ -44,7 +59,18 @@
           value = [];
         }
 
-        sync.$set(user, JSON.stringify(value));
+        sync.$set(user, {
+          urls: JSON.stringify(value)
+        });
+      };
+
+      /**
+       * Save feedback.
+       */
+      this.saveFeedBack = function (feedback) {
+        sync.$update(user, {
+          feedback: feedback
+        });
       };
     }
   ]);

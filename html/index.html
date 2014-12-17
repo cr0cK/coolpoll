@@ -20,9 +20,8 @@
     <![endif]-->
 
     <main ng-controller="MainCtrl" class="main">
-      <div class="alert alert-danger" role="alert" ng-if="error">
-        {{error}}
-      </div>
+      <div class="alert alert-danger" role="alert" ng-if="error">{{error}}</div>
+      <div class="alert alert-success" role="success" ng-if="success">{{success}}</div>
 
       <div ng-if="!username">
         <form>
@@ -62,6 +61,15 @@
             </button>
           </div>
         </div>
+
+        <form class="feedback" role="form" ng-submit="sendFeedback(feedback)">
+          <div class="form-group">
+            <label>If you have something to say, fill there:</label>
+            <textarea ng-model="feedback" class="form-control"></textarea>
+            <p>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
       </div>
     </main>
 

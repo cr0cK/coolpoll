@@ -34,8 +34,8 @@
   ])
 
   .controller('MainCtrl', [
-    '$scope', '$q', 'Specs', 'Polls', 'User', 'Lightbox',
-    function ($scope, $q, Specs, Polls, User, Lightbox) {
+    '$scope', '$timeout', '$q', 'Specs', 'Polls', 'User', 'Lightbox',
+    function ($scope, $timeout, $q, Specs, Polls, User, Lightbox) {
       $scope.$on('ready', function () {
         $scope.ready = true;
 
@@ -43,8 +43,10 @@
         if (!$scope.specs) {
           $scope.error = 'An error has occurred...';
         } else {
-          $scope.graphicsPicked = Polls.get();
+          $scope.graphicsPicked = Polls.getUrls();
         }
+
+        $scope.feedback = Polls.getFeedback();
       });
 
       $scope.username = User.get();
@@ -129,6 +131,18 @@
        */
       $scope.openLightboxModal = function (index) {
         Lightbox.openModal($scope.specs.graphics, index);
+      };
+
+      /**
+       * Send feedback.
+       */
+      $scope.sendFeedback = function (feedback) {
+        Polls.saveFeedBack(feedback);
+        $scope.success = 'Feedback saved!';
+
+        $timeout(function () {
+          $scope.success = null;
+        }, 3000);
       };
     }
   ]);
