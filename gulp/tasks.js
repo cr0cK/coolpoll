@@ -12,7 +12,12 @@ var settings    = require('./settings'),
     jshint      = require('gulp-jshint'),
     iconfont    = require('gulp-iconfont'),
     consolidate = require('gulp-consolidate'),
-    rename      = require('gulp-rename');
+    expect      = require('gulp-expect-file'),
+    rename      = require('gulp-rename'),
+    onFileExceptFailure = function () {
+      console.log('\nSome vendor files are missing... Process stopped.');
+      process.exit(1);
+    };
 
 var tasks = {};
 
@@ -53,6 +58,8 @@ tasks.buildLess = function () {
 tasks.buildBowerComponents = function () {
   return gulp
     .src(settings.bowerComponents)
+    .pipe(expect({errorOnFailure: true}, settings.bowerComponents))
+      .on('error', onFileExceptFailure)
     .pipe(concat('vendors.js'))
     .pipe(gulp.dest('./www/js'));
 };
