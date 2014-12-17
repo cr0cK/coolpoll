@@ -6,6 +6,7 @@
   "scripts": {
     "publish": "git subtree push --prefix www origin gh-pages",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/gulp build:all",
     "watch": "./node_modules/.bin/gulp watch"
   },
   "repository": {

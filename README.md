@@ -3,8 +3,10 @@ Coolpoll
 
 A little tool to make a poll of some images...
 
+```
 $ npm install
 $ bower install
-$ gulp build:all
+$ npm run build
+```
 
 Serve the www directory.
