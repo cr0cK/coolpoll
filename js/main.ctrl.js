@@ -6,7 +6,9 @@
     'polls',
 
     'LocalStorageModule',
-    'bootstrapLightbox'
+    'bootstrapLightbox',
+
+    'ngSanitize'
   ])
 
   .config(['localStorageServiceProvider', function (lsProvider) {

@@ -40,7 +40,7 @@
         </div>
 
         <h1>{{specs.title}}</h1>
-        <p>{{specs.text}}</p>
+        <p ng-bind-html="specs.text"></p>
         <p class="picks-remaining">Picks remaining: {{specs.maxPicks - graphicsPicked.length}} / {{specs.maxPicks}}</p>
         <p class="end-text" ng-show="isDone()">
           {{specs.endText}}

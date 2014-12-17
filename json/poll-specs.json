@@ -3,7 +3,7 @@
   "text": "Choose the design(s) you prefer.",
   "endText": "Thank you for your participation!",
   "maxPicks": 3,
-  "db": "https://coolpoll.firebaseio.com/home-gandiv5-1",
+  "db": "https://xxx.firebaseio.com/mydb",
   "graphics": [
     {
       "url": "graphics/image1.jpg"
