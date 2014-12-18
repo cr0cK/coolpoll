@@ -28,10 +28,12 @@
       <div ng-if="ready">
         <h1>Results</h1>
 
+        <p>Number of people: {{nbPeople}}</p>
+
         <div class="graphics">
-          <div class="graphic" ng-repeat="graphic in graphics | orderBy : 'polls' : true">
+          <div class="graphic" ng-repeat="graphic in graphics | orderBy : 'votes' : true">
             <img ng-src="{{graphic.url}}" />
-            <span class="polls">{{graphic.polls}}</span>
+            <span class="votes">{{graphic.votes}}</span>
           </div>
         </div>
 

@@ -12,19 +12,17 @@
         $scope.specs = Specs.get();
         if (!$scope.specs) {
           $scope.error = 'An error has occurred...';
-        } else {
-          $scope.polls = Polls.get();
         }
 
         var graphicsVotes = {};
         var feedbacks = [];
 
-        angular.forEach($scope.polls, function (data, username) {
+        angular.forEach(Polls.get(), function (data, username) {
           if (!data.urls) {
             return true;
           }
 
-          // count polls
+          // count votes
           var urls = JSON.parse(data.urls);
 
           _.forEach(urls, function (url) {
@@ -45,14 +43,17 @@
           });
         });
 
-        $scope.graphics = _.map(graphicsVotes, function (polls, url) {
+        $scope.graphics = _.map(graphicsVotes, function (votes, url) {
           return {
             url: url,
-            polls: polls
+            votes: votes
           };
         });
 
         $scope.feedbacks = feedbacks;
+        $scope.nbPeople = _(Polls.get()).keys().filter(function (v) {
+          return !/^\$/.test(v);
+        }).value().length;
       });
 
       $scope.loadApp();
