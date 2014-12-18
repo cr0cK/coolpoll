@@ -26,6 +26,13 @@
       };
 
       /**
+       * Return all polls data.
+       */
+      this.get = function () {
+        return polls;
+      };
+
+      /**
        * Return the graphics urls.
        */
       this.getUrls = function () {

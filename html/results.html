@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>    <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>     <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>     <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Coolpoll</title>
+    <meta name="description" content="Coolpoll">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src='js/vendors.js'></script>
+  </head>
+  <body ng-app="coolpoll" ng-cloak>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <main ng-controller="ResultsCtrl" class="main results-page">
+      <div class="alert alert-danger" role="alert" ng-if="error">{{error}}</div>
+      <div class="alert alert-success" role="success" ng-if="success">{{success}}</div>
+
+      <p ng-if="!ready">Loading...</p>
+
+      <div ng-if="ready">
+        <h1>Results</h1>
+
+        <div class="graphics">
+          <div class="graphic" ng-repeat="graphic in graphics | orderBy : 'polls' : true">
+            <img ng-src="{{graphic.url}}" />
+            <span class="polls">{{graphic.polls}}</span>
+          </div>
+        </div>
+
+        <div class="feedbacks" ng-repeat="feedback in feedbacks | orderBy : 'username'">
+          <h2>{{feedback.username}}</h2>
+          <p>{{feedback.text}}</p>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/source.js"></script>
+  </body>
+</html>

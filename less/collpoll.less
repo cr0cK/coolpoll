@@ -30,43 +30,67 @@ p.end-text {
   color: red;
 }
 
-div.graphics {
-  div.graphic {
-    display: inline-block;
-    margin: 10px 10px 0 0;
+.pick-page {
+  div.graphics {
+    div.graphic {
+      display: inline-block;
+      margin: 10px 10px 0 0;
 
-    a {
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 250px;
-      max-height: 250px;
-      cursor: pointer;
-      border: 1px solid black;
-
-      &.selected {
-        border: none;
-        outline: 3px solid red;
+      a {
+        text-decoration: none;
       }
 
-      &.disabled {
-        opacity: 0.2;
+      img {
+        max-width: 250px;
+        max-height: 250px;
+        cursor: pointer;
+        border: 1px solid black;
+
+        &.selected {
+          border: none;
+          outline: 3px solid red;
+        }
+
+        &.disabled {
+          opacity: 0.2;
+        }
+      }
+
+      button {
+        display: block;
+        margin: 8px auto 0 auto;
       }
     }
+  }
 
-    button {
-      display: block;
-      margin: 8px auto 0 auto;
+  form.feedback {
+    margin: 25px 0 0 0;
+
+    textarea {
+      width: 50%;
+      height: 100px;
     }
   }
 }
 
-form.feedback {
-  margin: 25px 0 0 0;
+.results-page {
+  div.graphic {
+    width: 100%;
+    margin: 40px 0;
 
-  textarea {
-    width: 50%;
-    height: 100px;
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      max-width: 250px;
+      max-height: 250px;
+      border: 1px solid black;
+    }
+
+    span.polls {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0 25px;
+      font-size: 6em;
+    }
   }
 }
